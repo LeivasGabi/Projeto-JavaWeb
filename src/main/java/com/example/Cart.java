@@ -17,6 +17,8 @@ public class Cart {
     @ManyToOne
     private Customer customer;
 
+    
+
     protected Cart() {}
     public Cart (Product product, Customer customer) {
         this.product = product;

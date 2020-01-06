@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
-public class ProductResource {
+public class CartResource {
   
   @Autowired
-  private ProductRepository repository;
+  private CartRepository repository;
   
-  public ProductResource(ProductRepository repository) {
+  public CartResource(ProductRepository repository) {
     this.repository = repository;
   }
 
@@ -25,7 +25,7 @@ public class ProductResource {
    * @param raca tipo de raca para filtrar
    * @return lista de produtos, filtrados ou nao
    */
-  @RequestMapping(value = "/produtos/", method = RequestMethod.GET)
+  @RequestMapping(value = "/cart/", method = RequestMethod.GET)
   public Iterable<Product> buscarProdutos(@RequestParam(required = false) String raca) {
     return this.repository.findAll();
   }
@@ -45,29 +45,29 @@ public class ProductResource {
    * Metodo de requisicao do tipo DELETE, para remover um item
    * @param id identificador ou indice da colecao dos produtos
    */
-  @RequestMapping(value = "/produtos/{id}", method = RequestMethod.DELETE)
-  public void removerProduto(@PathVariable Long id) {
+  @RequestMapping(value = "/cart/{id}", method = RequestMethod.DELETE)
+  public void removerCart(@PathVariable Long id) {
     this.repository.deleteById(id);
     // this.produtos.remove(id - 1);
   }
 
-  @RequestMapping(value = "/produtos/", 
+  @RequestMapping(value = "/cart/", 
   method = RequestMethod.POST)
   public Product criarProduto(@RequestBody Product product) {
-    String raca = product.getRaca();
+    String raca = product.getCamiseta();
     double valor = product.getValor();
     int quantidade = product.getQuantidade();
-    return this.repository.save(new Product(raca, valor, quantidade));
+    String tamanho = product.getTamanho();
+    return this.repository.save(new Product(camiseta, valor, quantidade, tamanho));
     // return new Product(raca, valor, quantidade);
   }
 
-  @RequestMapping(value="/produtos/{id}", 
-  method=RequestMethod.PUT)
-  public void alterarProduto(@PathVariable Long id,
+  @RequestMapping(value="/cart/{id}", method=RequestMethod.PUT)
+  public void alterarCart(@PathVariable Long id,
   @RequestBody Product produtoParam) {
       Product produto = this.repository.findById(id).get();
       produto.setQuantidade(produtoParam.getQuantidade());
       produto.setValor(produtoParam.getValor());
-      produto.setRaca(produtoParam.getRaca());
+      produto.setCamiseta(produtoParam.getCamiseta());
   }
 }
