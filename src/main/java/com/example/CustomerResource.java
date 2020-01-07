@@ -21,11 +21,11 @@ public class CustomerResource {
   }
 
   @RequestMapping(value = "/customer/", method = RequestMethod.GET)
-  public Iterable<Product> buscarCustumer(@RequestParam(required = false) String firstName) {
+  public Iterable<Customer> buscarCustumer(@RequestParam(required = false) String firstName) {
     return this.repository.findAll();
   }
   @RequestMapping(value = "/customer/{id}", method = RequestMethod.GET)
-  public Optional<Product> buscarCustomer(@PathVariable Long id) {
+  public Optional<Customer> buscarCustomer(@PathVariable Long id) {
     return this.repository.findById(id);
   }
   
@@ -34,16 +34,16 @@ public class CustomerResource {
     this.repository.deleteById(id);
   }
   @RequestMapping(value = "/customer/", method = RequestMethod.POST)
-  public Product criarCustomer(@RequestBody Product product) {
-    String firstname = product.getFirstName();
-    String lastname = product.getLastName();
-    return this.repository.save(new Customer(firstname, lastname));
+  public Customer criarCustomer(@RequestBody Customer customer) {
+    String firstName = customer.getFirstName();
+    String lastName = customer.getLastName();
+    return this.repository.save(new Customer(firstName, lastName));
   }
   @RequestMapping(value="/custumer/{id}", method=RequestMethod.PUT)
   public void alterarCustomer(@PathVariable Long id,
   @RequestBody Customer customerParam) {
       Customer customer = this.repository.findById(id).get();
-      customer.setFirstname(customerParam.getFirstname());
-      customer.setLastname(customerParam.getLastname());
+      customer.setFirstName(customerParam.getFirstName());
+      customer.setLastName(customerParam.getLastName());
   }
 }

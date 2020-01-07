@@ -52,4 +52,7 @@ public class Product {
     public void setValor(double valor) {
         this.valor = valor;
     }
+	public Long getId() {
+		return null;
+	}
 }

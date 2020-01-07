@@ -5,4 +5,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CartRepository 
-extends CrudRepository<Product, Long> {}
+extends CrudRepository<Cart, Long> {}

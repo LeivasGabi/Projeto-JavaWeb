@@ -2,22 +2,19 @@ package com.example;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.annotation.Id;
 
-@EntityScan
 public class Cart {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToOne
+    @OneToOne (optional = false)
     private Product product;
-    @ManyToOne
+    @OneToOne (optional = false)
     private Customer customer;
-
-    
 
     protected Cart() {}
     public Cart (Product product, Customer customer) {
