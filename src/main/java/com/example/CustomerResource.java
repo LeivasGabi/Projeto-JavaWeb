@@ -39,7 +39,7 @@ public class CustomerResource {
     String lastName = customer.getLastName();
     return this.repository.save(new Customer(firstName, lastName));
   }
-  @RequestMapping(value="/custumer/{id}", method=RequestMethod.PUT)
+  @RequestMapping(value="/customer/{id}", method=RequestMethod.PUT)
   public void alterarCustomer(@PathVariable Long id,
   @RequestBody Customer customerParam) {
       Customer customer = this.repository.findById(id).get();
