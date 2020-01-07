@@ -2,7 +2,6 @@ package com.example;
 
 import java.util.HashMap;
 import java.util.Map;
-// import java.util.Optional;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-// import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 public class CartResource {
@@ -24,9 +22,7 @@ public class CartResource {
   @Autowired
   private CustomerRepository customers;
   
-  public CartResource(CartRepository repository) {
-    this.repository = repository;
-  }
+  public CartResource() {}
 
   @RequestMapping(value = "/compras/", method = RequestMethod.POST)
   public Cart criarCompra(@RequestBody Cart cart) {

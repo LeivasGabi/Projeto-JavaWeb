@@ -53,6 +53,6 @@ public class Product {
         this.valor = valor;
     }
 	public Long getId() {
-		return null;
+		return id;
 	}
 }

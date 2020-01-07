@@ -1,15 +1,16 @@
 package com.example;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.OneToOne;
+import javax.persistence.Id;
 
-import org.springframework.data.annotation.Id;
-
+@Entity
 public class Cart {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne (optional = false)
     private Product product;
